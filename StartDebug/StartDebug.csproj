@@ -88,9 +88,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PSXdtTransform\PSXdtTransform.csproj">
+    <ProjectReference Include="..\PSXdtTransform\PsXdtConfigTransform.csproj">
       <Project>{5ab82ad5-76ca-41a6-aae4-e06117438125}</Project>
-      <Name>PSXdtTransform</Name>
+      <Name>PsXdtConfigTransform</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

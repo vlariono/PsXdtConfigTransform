@@ -1,26 +1,25 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Management.Automation;
 using System.Xml;
 using DotNet.Xdt;
 
-namespace PSXdtTransform
+namespace PsXdtConfigTransform
 {
     /// <summary>
     ///     <para type="synopsis">Applies xdt transform to config file</para>
     ///     <para type="description">Does the same things as Visual Studio does to web.config, but can be used with app.config as well</para>
     /// </summary>
     /// <example>
-    ///     <para>Invoke-XdtTransform -Path 'App.config' -XdtTranformPath 'App.Debug.config' -OutputPath 'App.out.config' -Verbose</para>
+    ///     <para>Invoke-XdtConfigTransform -Path 'App.config' -XdtTranformPath 'App.Debug.config' -OutputPath 'App.out.config' -Verbose</para>
     ///     <para>Applies xdt transform defined in App.Debug.config to App.config, result is saved to App.out.config</para>
     /// </example>
     /// <example>
-    ///     <para>ls -File C:\Config\Xdt|select -ExpandProperty FullName|Invoke-XdtTransform -Path C:\Config\App.config -Verbose</para>
+    ///     <para>ls -File C:\Config\Xdt|select -ExpandProperty FullName|Invoke-XdtConfigTransform -Path C:\Config\App.config -Verbose</para>
     ///     <para>Applies all xdt transforms from C:\Config\Xdt to C:\Config\App.config, writes resulting config to output channel</para>
     /// </example>
-    [Cmdlet(VerbsLifecycle.Invoke, "XdtTransform")]
+    [Cmdlet(VerbsLifecycle.Invoke, "XdtConfigTransform")]
     [OutputType(typeof(XmlTransformableDocument))]
-    public class PsXdtTranform : Cmdlet
+    public class PsXdtConfigTransform : Cmdlet
     {
         private readonly XmlTransformableDocument _configDocument = new XmlTransformableDocument() { PreserveWhitespace = true };
 
@@ -28,10 +27,10 @@ namespace PSXdtTransform
         protected override void ProcessRecord()
         {
             if(!File.Exists(XdtTranformPath))
-                throw new ArgumentException(XdtTranformPath);
+                throw new FileNotFoundException(XdtTranformPath);
 
             using (var xdtConfig = File.OpenRead(XdtTranformPath))
-            using (var tranformation = new XmlTransformation(xdtConfig,  new XdtTransformationLog(this)))
+            using (var tranformation = new XmlTransformation(xdtConfig,  new PsXdtConfigTransformLog(this)))
             {
                 tranformation.Apply(_configDocument);
             }
@@ -41,7 +40,7 @@ namespace PSXdtTransform
         protected override void BeginProcessing()
         {
             if (!File.Exists(Path))
-                throw new ArgumentException(Path);
+                throw new FileNotFoundException(Path);
 
             using (var appConfig = File.OpenRead(Path))
             {

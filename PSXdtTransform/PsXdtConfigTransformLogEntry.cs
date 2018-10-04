@@ -3,11 +3,12 @@
 using System;
 using DotNet.Xdt;
 
-namespace PSXdtTransform {
+namespace PsXdtConfigTransform
+{
     /// <summary>
-    /// Entry from <see cref="XdtTransformationLogEntry"/>  
+    /// Entry from <see cref="PsXdtConfigTransformLogEntry"/>  
     /// </summary>
-    internal class XdtTransformationLogEntry {
+    internal class PsXdtConfigTransformLogEntry {
         /// <summary>
         /// Time of entry 
         /// </summary>

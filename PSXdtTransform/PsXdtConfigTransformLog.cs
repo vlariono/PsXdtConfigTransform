@@ -2,20 +2,20 @@
 using System.Management.Automation;
 using DotNet.Xdt;
 
-namespace PSXdtTransform
+namespace PsXdtConfigTransform
 {
-    internal class XdtTransformationLog : IXmlTransformationLogger
+    internal class PsXdtConfigTransformLog : IXmlTransformationLogger
     {
         private Cmdlet _cmdlet;
 
-        public XdtTransformationLog(Cmdlet cmdlet)
+        public PsXdtConfigTransformLog(Cmdlet cmdlet)
         {
             _cmdlet = cmdlet;
         }
 
         public void LogMessage(string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -26,7 +26,7 @@ namespace PSXdtTransform
 
         public void LogMessage(MessageType type, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 MessageType = type.ToString(),
                 Message = message,
@@ -38,7 +38,7 @@ namespace PSXdtTransform
 
         public void LogWarning(string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -49,7 +49,7 @@ namespace PSXdtTransform
 
         public void LogWarning(string file, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 File = file,
                 Message = message,
@@ -61,7 +61,7 @@ namespace PSXdtTransform
 
         public void LogWarning(string file, int lineNumber, int linePosition, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 File = file,
                 LineNumber = lineNumber,
@@ -75,7 +75,7 @@ namespace PSXdtTransform
 
         public void LogError(string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -87,7 +87,7 @@ namespace PSXdtTransform
 
         public void LogError(string file, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 File = file,
                 Message = message,
@@ -100,7 +100,7 @@ namespace PSXdtTransform
 
         public void LogError(string file, int lineNumber, int linePosition, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 File = file,
                 LineNumber = lineNumber,
@@ -115,7 +115,7 @@ namespace PSXdtTransform
 
         public void LogErrorFromException(Exception ex)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 Exception = ex
             };
@@ -126,7 +126,7 @@ namespace PSXdtTransform
 
         public void LogErrorFromException(Exception ex, string file)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 File = file,
                 Exception = ex
@@ -138,7 +138,7 @@ namespace PSXdtTransform
 
         public void LogErrorFromException(Exception ex, string file, int lineNumber, int linePosition)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 File = file,
                 Exception = ex,
@@ -152,7 +152,7 @@ namespace PSXdtTransform
 
         public void StartSection(string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -163,7 +163,7 @@ namespace PSXdtTransform
 
         public void StartSection(MessageType type, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 MessageType = type.ToString(),
                 Message = message,
@@ -175,7 +175,7 @@ namespace PSXdtTransform
 
         public void EndSection(string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -186,7 +186,7 @@ namespace PSXdtTransform
 
         public void EndSection(MessageType type, string message, params object[] messageArgs)
         {
-            var logEntry = new XdtTransformationLogEntry()
+            var logEntry = new PsXdtConfigTransformLogEntry()
             {
                 MessageType = type.ToString(),
                 Message = message,

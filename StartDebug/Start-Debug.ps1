@@ -1,3 +1,3 @@
 ﻿# initialization code
-Import-Module .\PsXdtTranform.psd1 -ErrorAction Stop
+Import-Module .\PsXdtConfigTranform.psd1 -ErrorAction Stop
 
