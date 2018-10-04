@@ -28,6 +28,7 @@ namespace PsXdtConfigTransform
         {
             if(!File.Exists(XdtTranformPath))
                 throw new FileNotFoundException(XdtTranformPath);
+            
 
             using (var xdtConfig = File.OpenRead(XdtTranformPath))
             using (var tranformation = new XmlTransformation(xdtConfig,  new PsXdtConfigTransformLog(this)))
@@ -53,6 +54,7 @@ namespace PsXdtConfigTransform
         {
             if (OutputPath != null)
             {
+                using(_configDocument)
                 using (var outConfig = File.Create(OutputPath))
                 using (var xmlWriter = XmlWriter.Create(outConfig, new XmlWriterSettings() { Indent = true }))
                 {
