@@ -28,12 +28,11 @@ namespace PsXdtConfigTransform
         /// <inheritdoc />
         protected override void ProcessRecord()
         {
-            if(!File.Exists(XdtTranformPath))
+            if (!File.Exists(XdtTranformPath))
                 throw new FileNotFoundException(XdtTranformPath);
             
-
             using (var xdtConfig = File.OpenRead(XdtTranformPath))
-            using (var tranformation = new XmlTransformation(xdtConfig,  new PsXdtConfigTransformLog(this)))
+            using (var tranformation = new XmlTransformation(xdtConfig, new PsXdtConfigTransformLog(this)))
             {
                 tranformation.Apply(_configDocument);
             }
@@ -56,7 +55,7 @@ namespace PsXdtConfigTransform
         {
             if (OutputPath != null)
             {
-                using(_configDocument)
+                using (_configDocument)
                 using (var outConfig = File.Create(OutputPath))
                 using (var xmlWriter = XmlWriter.Create(outConfig, new XmlWriterSettings() { Indent = true }))
                 {
@@ -74,7 +73,8 @@ namespace PsXdtConfigTransform
         /// </summary>
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateNotNullOrEmpty]
-        public string Path {
+        public string Path
+        {
             get => _path;
             set => _path = GetUnresolvedProviderPathFromPSPath(value);
         }
