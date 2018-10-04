@@ -19,9 +19,11 @@ namespace PsXdtConfigTransform
     /// </example>
     [Cmdlet(VerbsLifecycle.Invoke, "XdtConfigTransform")]
     [OutputType(typeof(XmlTransformableDocument))]
-    public class PsXdtConfigTransform : Cmdlet
+    public class PsXdtConfigTransform : PSCmdlet
     {
         private readonly XmlTransformableDocument _configDocument = new XmlTransformableDocument() { PreserveWhitespace = true };
+        private string _path;
+        private string _xdtTranformPath;
 
         /// <inheritdoc />
         protected override void ProcessRecord()
@@ -72,14 +74,21 @@ namespace PsXdtConfigTransform
         /// </summary>
         [Parameter(Mandatory = true, Position = 0)]
         [ValidateNotNullOrEmpty]
-        public string Path { get; set; }
+        public string Path {
+            get => _path;
+            set => _path = GetUnresolvedProviderPathFromPSPath(value);
+        }
 
         /// <summary>
         ///     <para type="description">Path to xdt transform file</para>
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         [ValidateNotNullOrEmpty]
-        public string XdtTranformPath { get; set; }
+        public string XdtTranformPath
+        {
+            get => _xdtTranformPath;
+            set => _xdtTranformPath = GetUnresolvedProviderPathFromPSPath(value);
+        }
 
         /// <summary>
         ///     <para type="description">Path to save resulting config file to</para>
