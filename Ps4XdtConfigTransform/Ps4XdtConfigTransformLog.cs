@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Management.Automation;
-using DotNet.Xdt;
+using Microsoft.Web.XmlTransform;
 
-namespace PsXdtConfigTransform
+namespace Ps4XdtConfigTransform
 {
-    internal class PsXdtConfigTransformLog : IXmlTransformationLogger
+    internal class Ps4XdtConfigTransformLog : IXmlTransformationLogger
     {
-        private readonly Cmdlet _cmdlet;
+        private Cmdlet _cmdlet;
 
-        public PsXdtConfigTransformLog(Cmdlet cmdlet)
+        public Ps4XdtConfigTransformLog(Cmdlet cmdlet)
         {
             _cmdlet = cmdlet;
         }
 
         public void LogMessage(string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -26,7 +26,7 @@ namespace PsXdtConfigTransform
 
         public void LogMessage(MessageType type, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 MessageType = type.ToString(),
                 Message = message,
@@ -38,7 +38,7 @@ namespace PsXdtConfigTransform
 
         public void LogWarning(string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -49,7 +49,7 @@ namespace PsXdtConfigTransform
 
         public void LogWarning(string file, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 File = file,
                 Message = message,
@@ -61,7 +61,7 @@ namespace PsXdtConfigTransform
 
         public void LogWarning(string file, int lineNumber, int linePosition, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 File = file,
                 LineNumber = lineNumber,
@@ -75,7 +75,7 @@ namespace PsXdtConfigTransform
 
         public void LogError(string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -87,7 +87,7 @@ namespace PsXdtConfigTransform
 
         public void LogError(string file, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 File = file,
                 Message = message,
@@ -100,7 +100,7 @@ namespace PsXdtConfigTransform
 
         public void LogError(string file, int lineNumber, int linePosition, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 File = file,
                 LineNumber = lineNumber,
@@ -115,7 +115,7 @@ namespace PsXdtConfigTransform
 
         public void LogErrorFromException(Exception ex)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 Exception = ex
             };
@@ -126,7 +126,7 @@ namespace PsXdtConfigTransform
 
         public void LogErrorFromException(Exception ex, string file)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 File = file,
                 Exception = ex
@@ -138,7 +138,7 @@ namespace PsXdtConfigTransform
 
         public void LogErrorFromException(Exception ex, string file, int lineNumber, int linePosition)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 File = file,
                 Exception = ex,
@@ -152,7 +152,7 @@ namespace PsXdtConfigTransform
 
         public void StartSection(string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -163,7 +163,7 @@ namespace PsXdtConfigTransform
 
         public void StartSection(MessageType type, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 MessageType = type.ToString(),
                 Message = message,
@@ -175,7 +175,7 @@ namespace PsXdtConfigTransform
 
         public void EndSection(string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 Message = message,
                 MessageArgs = messageArgs
@@ -186,7 +186,7 @@ namespace PsXdtConfigTransform
 
         public void EndSection(MessageType type, string message, params object[] messageArgs)
         {
-            var logEntry = new PsXdtConfigTransformLogEntry()
+            var logEntry = new Ps4XdtConfigTransformLogEntry()
             {
                 MessageType = type.ToString(),
                 Message = message,
